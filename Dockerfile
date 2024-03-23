@@ -43,5 +43,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY . /var/www/html
 COPY .env.example /var/www/html/.env
 
+WORKDIR /var/www/html
+RUN composer install
+
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
