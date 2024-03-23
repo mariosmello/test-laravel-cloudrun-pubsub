@@ -43,8 +43,15 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY . /var/www/html
 COPY .env.example /var/www/html/.env
 
+RUN chmod -R 775 /var/www/html/storage
+
 WORKDIR /var/www/html
 RUN composer install
+RUN php artisan key:generate
+RUN php artisan config:cache
+RUN php artisan clear:cache
+RUN php artisan route:clear
+RUN php artisan view:clear
 
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
