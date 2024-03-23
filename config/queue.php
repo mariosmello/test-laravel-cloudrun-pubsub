@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'database'),
+    'default' => env('QUEUE_CONNECTION', 'pubsub'),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,6 +70,14 @@ return [
             'retry_after' => env('REDIS_QUEUE_RETRY_AFTER', 90),
             'block_for' => null,
             'after_commit' => false,
+        ],
+
+        'pubsub' => [
+            'driver' => 'pubsub',
+            'queue' => env('PUBSUB_QUEUE', 'laravel-queue-1'),
+            'project_id' => env('PUBSUB_PROJECT_ID', 'postech-417415'),
+            'retries' => 3,
+            'request_timeout' => 60,
         ],
 
     ],
