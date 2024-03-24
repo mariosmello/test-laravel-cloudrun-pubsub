@@ -20,6 +20,7 @@ class EchoOutput implements ShouldQueue
      */
     public function __construct($payload)
     {
+        Log::info("Job", [$payload]);
         $this->message = [
             'name'=>'test',
             'date'=>$payload
