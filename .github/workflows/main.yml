@@ -42,4 +42,4 @@ jobs:
               FOO=bar
               ZIP=zap
           secrets: |
-              /secrets/api/key=GOOGLE_APPLICATION_CREDENTIALS:latest
+            GOOGLE_APPLICATION_CREDENTIALS=GOOGLE_APPLICATION_CREDENTIALS:latest
