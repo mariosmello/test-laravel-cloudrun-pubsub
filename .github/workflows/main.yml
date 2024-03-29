@@ -41,5 +41,3 @@ jobs:
           env_vars: |
               FOO=bar
               ZIP=zap
-          secrets: |
-            GOOGLE_APPLICATION_CREDENTIALS=GOOGLE_APPLICATION_CREDENTIALS:latest
