@@ -26,6 +26,8 @@ jobs:
         run: |-
           docker build \
           --tag "us-east1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/test/test:latest" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" \
 
       - name: Publish
         run: |-
