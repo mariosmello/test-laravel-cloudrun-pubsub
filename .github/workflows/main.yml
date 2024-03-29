@@ -32,7 +32,7 @@ jobs:
             HTTP_PORT=80
 
       - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@main
+        uses: google-github-actions/deploy-cloudrun@v2
         with:
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/test-laravel:latest
           service: ${{ secrets.GCP_CLOUDRUN_SERVICE }}
