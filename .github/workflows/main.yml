@@ -40,4 +40,3 @@ jobs:
           allow-unauthenticated: true
           env_vars: |
               FOO=bar
-              ZIP=zap
