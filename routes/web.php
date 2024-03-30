@@ -12,4 +12,5 @@ Route::any('/jobs/', function(\Illuminate\Support\Facades\Request $request) {
     \Illuminate\Support\Facades\Log::error('Jobs', ['request' => $request->all()]);
     $job = new \App\Jobs\EchoOutput($request);
     $job->handle();
+    return response()->json([])->status(200);
 });
