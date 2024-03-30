@@ -20,7 +20,7 @@ class EchoOutput implements ShouldQueue
      */
     public function __construct($payload)
     {
-        Log::critical("Job", [$payload]);
+        Log::error("Job", [$payload]);
         $this->message = [
             'name'=>'test',
             'date'=>$payload
@@ -32,6 +32,6 @@ class EchoOutput implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::critical("Job sent at ", [$this->message]);
+        Log::error("Job sent at ", [$this->message]);
     }
 }
