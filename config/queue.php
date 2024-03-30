@@ -74,10 +74,12 @@ return [
 
         'pubsub' => [
             'driver' => 'pubsub',
-            'queue' => env('PUBSUB_QUEUE', 'laravel-queue-1'),
+            'queue' => env('PUBSUB_QUEUE', 'default'),
+            'queue_prefix' => env('PUBSUB_QUEUE_PREFIX', ''),
             'project_id' => env('PUBSUB_PROJECT_ID', 'postech-417415'),
             'retries' => 3,
             'request_timeout' => 60,
+            'subscriber' => 'default',
         ],
 
     ],

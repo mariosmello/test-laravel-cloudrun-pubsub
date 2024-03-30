@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     jpegoptim optipng pngquant gifsicle \
     unzip \
     git \
+    supervisor \
     curl \
     lua-zlib-dev \
     libmemcached-dev \
@@ -45,9 +46,20 @@ COPY .env.example /var/www/html/.env
 
 RUN chown -R www-data: /var/www/html/storage
 
+COPY docker/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+
 WORKDIR /var/www/html
 RUN composer install
 RUN php artisan key:generate
+RUN php artisan migrate
+RUN php artisan db:seed
 
 EXPOSE 80
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+COPY docker/supervisor/entrypoint.sh /supervisor-entrypoint.sh
+RUN chmod +x /supervisor-entrypoint.sh
+ENTRYPOINT ["/supervisor-entrypoint.sh"]
+
+#COPY docker/apache/entrypoint.sh /apache-entrypoint.sh
+#RUN chmod +x /apache-entrypoint.sh
+#ENTRYPOINT ["/apache-entrypoint.sh"]

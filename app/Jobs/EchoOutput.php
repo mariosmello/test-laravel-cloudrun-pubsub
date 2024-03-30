@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -32,6 +33,10 @@ class EchoOutput implements ShouldQueue
      */
     public function handle(): void
     {
+        $user = User::first();
+        $user->name = uniqid();
+        $user->save();
+
         Log::error("Job sent at ", [$this->message]);
     }
 }
